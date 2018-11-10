@@ -1,3 +1,6 @@
+# RADD links
+24/7 learning options in our Online Partner Enablement Network (OPEN)
+http://app.engage.redhat.com/e/er?s=1795&lid=96838&elqTrackId=832e43c2a7bc4103b592545ba59acdb0&elq=4caba2f602e04d03bcae8e12be880eb0&elqaid=56133&elqat=1
 # Cheat Sheet
 ## Using screen
  **On the bastion host**  
