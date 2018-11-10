@@ -13,9 +13,13 @@ Assignment requirements are intentionally a bit vague
 Grading is as follows:
 
  20% : Basic Requirements section
+ 
  20% : HA Deployment section
+ 
  20% : Environment Configuration section
+ 
  20% : CICD Workflow section
+ 
  20% : Multitenancy section
 
 Provide sufficient documentation for each section
@@ -31,9 +35,13 @@ MitziCom management requires that you include all of the items listed in these s
 
 ## 2.1. Basic Requirements
 Ability to authenticate at the master console
+
 Registry has storage attached and working
+
 Router is configured on each infranode
+
 PVs of different types are available for users to consume
+
 Ability to deploy a simple app (nodejs-mongo-persistent)
 
 ## 2.2. HA Deployment
