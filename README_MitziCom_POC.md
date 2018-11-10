@@ -11,11 +11,12 @@ Assignments should simulate a challenge typically encountered in a Red Hat Consu
 Assignment requirements are intentionally a bit vague
 
 Grading is as follows:
-20% : Basic Requirements section
-20% : HA Deployment section
-20% : Environment Configuration section
-20% : CICD Workflow section
-20% : Multitenancy section
+
+ 20% : Basic Requirements section
+ 20% : HA Deployment section
+ 20% : Environment Configuration section
+ 20% : CICD Workflow section
+ 20% : Multitenancy section
 
 Provide sufficient documentation for each section
 Sections without documentation will not be graded
