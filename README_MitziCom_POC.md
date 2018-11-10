@@ -45,8 +45,9 @@ PVs of different types are available for users to consume
 Ability to deploy a simple app (nodejs-mongo-persistent)
 
 ## 2.2. HA Deployment
--There are three masters working
--There are three etcd instances working
+
+   There are three masters working  
+   There are three etcd instances working  
 -There is a load balancer to access the masters
 -There is a load balancer/DNS for both infranodes
 -There are at least two infranodes
