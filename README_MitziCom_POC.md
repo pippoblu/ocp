@@ -11,7 +11,6 @@ Assignments should simulate a challenge typically encountered in a Red Hat Consu
 Assignment requirements are intentionally a bit vague
 
 Grading is as follows:
-
 20% : Basic Requirements section
 20% : HA Deployment section
 20% : Environment Configuration section
