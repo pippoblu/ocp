@@ -1,0 +1,202 @@
+[OSEv3:vars]
+
+###########################################################################
+#### Ansible Vars
+############################################################################
+timeout=60
+ansible_user=ec2-user
+ansible_become=yes
+
+############################################################################
+#### OpenShift Basic Vars
+############################################################################
+#
+#
+#
+#
+#[OSEv3:vars]
+#[OSEv3:vars]
+###########################################################################
+### Ansible Vars
+###########################################################################
+timeout=60
+ansible_become=yes
+ansible_ssh_user=ec2-user
+
+# disable memory check, as we are not a production environment
+openshift_disable_check="memory_availability"
+
+# Set this line to enable NFS
+openshift_enable_unsupported_configurations=True
+
+# Minimum variables set
+openshift_deployment_type=openshift-enterprise
+containerized=false
+openshift_master_cluster_method=native
+openshift_master_cluster_hostname=loadbalancer1.f92c.internal
+openshift_master_cluster_public_hostname=loadbalancer.f92c.example.opentlc.com
+openshift_master_default_subdomain=apps.f92c.example.opentlc.com
+openshift_hosted_router_selector='node-role.kubernetes.io/infra=true'
+openshift_hosted_registry_selector='node-role.kubernetes.io/infra=true'
+
+# Enable the Network Policy plugin
+os_sdn_network_plugin_name='redhat/openshift-ovs-networkpolicy'
+
+###########################################################################
+## OpenShift Metrics and Logging Vars
+##########################################################################
+
+########################
+# Enable cluster logging
+########################
+#openshift_logging_install_logging=True
+##openshift_logging_es_cluster_size=1
+##openshift_logging_namespace=logging
+#openshift_logging_es_pvc_dynamic=true
+#openshift_logging_es_pvc_size=1Gi
+#openshift_logging_es_number_of_shards=2
+#openshift_logging_es_nodeselector={"node-role.kubernetes.io/infra": "true"}
+##openshift_logging_kibana_nodeselector={"node-role.kubernetes.io/infra": "true"}
+##openshift_logging_curator_nodeselector={"node-role.kubernetes.io/infra": "true"}
+
+#openshift_logging_install_logging=true
+#openshift_logging_storage_kind=nfs
+#openshift_logging_storage_access_modes=['ReadWriteOnce']
+#openshift_logging_storage_nfs_directory=/srv/nfs
+#openshift_logging_storage_nfs_options='*(rw,root_squash)'
+#openshift_logging_storage_volume_name=logging
+#openshift_logging_storage_volume_size=1Gi
+#openshift_logging_storage_labels={'storage': 'logging'}
+#openshift_logging_es_pvc_storage_class_name=''
+#openshift_logging_es_memory_limit=1Gi
+
+
+##openshift_logging_kibana_nodeselector={"node-role.kubernetes.io/infra": "true"}
+#openshift_logging_curator_nodeselector={'env': 'infra'}
+##openshift_logging_es_nodeselector={"node-role.kubernetes.io/infra": "true"}
+
+##openshift_logging_curator_default_days=2
+
+
+########################
+# Enable cluster metrics
+########################
+
+##openshift_metrics_install_metrics=true
+#openshift_metrics_storage_kind=nfs
+#openshift_metrics_storage_access_modes=['ReadWriteOnce']
+#openshift_metrics_storage_nfs_directory=/srv/nfs
+#openshift_metrics_storage_nfs_options='*(rw,root_squash)'
+#openshift_metrics_storage_volume_name=metrics
+#openshift_metrics_storage_volume_size=10Gi
+#openshift_metrics_storage_labels={'storage': 'metrics'}
+#openshift_metrics_cassanda_pvc_storage_class_name=''
+
+#openshift_metrics_hawkular_nodeselector={"node-role.kubernetes.io/infra": "true"}
+#openshift_metrics_hawkular_nodeselector={"node-role.kubernetes.io/infra": "true"}
+#openshift_metrics_cassandra_nodeselector={"node-role.kubernetes.io/infra": "true"}
+##openshift_metrics_heapster_nodeselector={"node-role.kubernetes.io/infra": "true"}
+
+# Store Metrics for 2 days
+##openshift_metrics_duration=2
+
+
+#########################
+# Add Prometheus Metrics:
+#########################
+
+##openshift_hosted_prometheus_deploy=true
+##openshift_prometheus_namespace=openshift-metrics
+##openshift_prometheus_node_selector={"node-role.kubernetes.io/infra": "true"}
+
+# Prometheus
+##openshift_prometheus_storage_type='emptydir'
+
+# For prometheus-alertmanager
+##openshift_prometheus_alertmanager_storage_type='emptydir'
+
+# For prometheus-alertbuffer
+##openshift_prometheus_alertbuffer_storage_type='emptydir'
+
+# Suggested Quotas and limits for Prometheus components:
+##openshift_prometheus_memory_requests=2Gi
+##openshift_prometheus_cpu_requests=750m
+##openshift_prometheus_memory_limit=2Gi
+##openshift_prometheus_cpu_limit=750m
+##openshift_prometheus_alertmanager_memory_requests=300Mi
+##openshift_prometheus_alertmanager_cpu_requests=200m
+##openshift_prometheus_alertmanager_memory_limit=300Mi
+##openshift_prometheus_alertmanager_cpu_limit=200m
+##openshift_prometheus_alertbuffer_memory_requests=300Mi
+##openshift_prometheus_alertbuffer_cpu_requests=200m
+##openshift_prometheus_alertbuffer_memory_limit=300Mi
+##openshift_prometheus_alertbuffer_cpu_limit=200m
+
+
+# Grafana
+##openshift_grafana_node_selector={"node-role.kubernetes.io/infra": "true"}
+#openshift_grafana_storage_type=pvc
+#openshift_grafana_pvc_size=2Gi
+#openshift_grafana_node_exporter=true
+
+
+#LDAP configuration
+#
+## LDAP auth
+openshift_master_identity_providers=[{'name': 'ldap', 'challenge': 'true', 'login': 'true', 'kind': 'LDAPPasswordIdentityProvider','attributes': {'id': ['dn'], 'email': ['mail'], 'name': ['cn'], 'preferredUsername': ['uid']}, 'bindDN': 'uid=admin,cn=users,cn=accounts,dc=shared,dc=example,dc=opentlc,dc=com', 'bindPassword': 'r3dh4t1!', 'ca': '/etc/origin/master/ipa-ca.crt','insecure': 'false', 'url': 'ldaps://ipa.shared.example.opentlc.com:636/cn=users,cn=accounts,dc=shared,dc=example,dc=opentlc,dc=com?uid?sub?(memberOf=cn=ocp-users,cn=groups,cn=accounts,dc=shared,dc=example,dc=opentlc,dc=com)'}]
+
+## #openshift_master_ldap_ca=<ca text>
+## # or
+openshift_master_ldap_ca_file=/root/ipa-ca.crt
+
+
+###########################################################################
+### OpenShift Hosts
+###########################################################################
+[OSEv3:children]
+lb
+masters
+etcd
+nodes
+nfs
+#glusterfs
+
+[lb]
+loadbalancer1.f92c.internal
+
+[masters]
+master1.f92c.internal
+master2.f92c.internal
+master3.f92c.internal
+
+[etcd]
+master1.f92c.internal
+master2.f92c.internal
+master3.f92c.internal
+
+[nodes]
+## These are the masters
+master1.f92c.internal openshift_hostname=master1.f92c.internal  openshift_node_labels="{'env': 'master', 'cluster': 'f92c'}"
+master2.f92c.internal openshift_hostname=master2.f92c.internal  openshift_node_labels="{'env': 'master', 'cluster': 'f92c'}"
+master3.f92c.internal openshift_hostname=master3.f92c.internal  openshift_node_labels="{'env': 'master', 'cluster': 'f92c'}"
+
+## These are infranodes
+infranode1.f92c.internal openshift_hostname=infranode1.f92c.internal  openshift_node_labels="{'env': 'infra', 'cluster': 'f92c', 'node-role.kubernetes.io/infra': 'true', 'infra': 'true', 'region': 'infra'}"
+infranode2.f92c.internal openshift_hostname=infranode2.f92c.internal  openshift_node_labels="{'env': 'infra', 'cluster': 'f92c', 'node-role.kubernetes.io/infra': 'true', 'infra': 'true', 'region': 'infra'}"
+
+## These are regular nodes
+node1.f92c.internal openshift_hostname=node1.f92c.internal  openshift_node_labels="{'env':'app', 'cluster': 'f92c'}"
+node2.f92c.internal openshift_hostname=node2.f92c.internal  openshift_node_labels="{'env':'app', 'cluster': 'f92c'}"
+node3.f92c.internal openshift_hostname=node3.f92c.internal  openshift_node_labels="{'env':'app', 'cluster': 'f92c'}"
+node4.f92c.internal openshift_hostname=node4.f92c.internal  openshift_node_labels="{'env':'app', 'cluster': 'f92c'}"
+
+## These are CNS nodes
+support1.f92c.internal openshift_hostname=support1.f92c.internal  openshift_node_labels="{'env':'glusterfs', 'cluster': 'f92c'}"
+
+#[nfs]
+#support1.f92c.internal openshift_hostname=support1.f92c.internal  openshift_node_labels="{'env':'EFK', 'cluster': 'f92c'}"
+
+#[glusterfs]
+#support1.f92c.internal glusterfs_devices='[ "/dev/xvdd" ]'
+#support2.f92c.internal glusterfs_devices='[ "/dev/xvdd" ]'
+#support3.f92c.internal glusterfs_devices='[ "/dev/xvdd" ]'
