@@ -1,0 +1,64 @@
+[OSEv3:vars]
+
+###########################################################################
+### Ansible Vars
+###########################################################################
+timeout=60
+ansible_become=yes
+ansible_ssh_user=ec2-user
+
+# disable memory check, as we are not a production environment
+openshift_disable_check="memory_availability"
+
+# Set this line to enable NFS
+openshift_enable_unsupported_configurations=True
+
+
+###########################################################################
+### OpenShift Hosts
+###########################################################################
+[OSEv3:children]
+lb
+masters
+etcd
+nodes
+nfs
+#glusterfs
+
+[lb]
+loadbalancer.ba25.internal
+
+[masters]
+master1.ba25.internal
+master2.ba25.internal
+master3.ba25.internal
+
+[etcd]
+master1.ba25.internal
+master2.ba25.internal
+master3.ba25.internal
+
+[nodes]
+## These are the masters
+master1.ba25.internal openshift_hostname=master1.ba25.internal  openshift_node_labels="{'env': 'master', 'cluster': 'ba25'}"
+master2.ba25.internal openshift_hostname=master2.ba25.internal  openshift_node_labels="{'env': 'master', 'cluster': 'ba25'}"
+master3.ba25.internal openshift_hostname=master3.ba25.internal  openshift_node_labels="{'env': 'master', 'cluster': 'ba25'}"
+
+## These are infranodes
+infranode1.ba25.internal openshift_hostname=infranode1.ba25.internal  openshift_node_labels="{'env':'infra', 'cluster': 'ba25'}"
+infranode2.ba25.internal openshift_hostname=infranode2.ba25.internal  openshift_node_labels="{'env':'infra', 'cluster': 'ba25'}"
+
+## These are regular nodes
+node1.ba25.internal openshift_hostname=node1.ba25.internal  openshift_node_labels="{'env':'app', 'cluster': 'ba25'}"
+node2.ba25.internal openshift_hostname=node2.ba25.internal  openshift_node_labels="{'env':'app', 'cluster': 'ba25'}"
+node3.ba25.internal openshift_hostname=node3.ba25.internal  openshift_node_labels="{'env':'app', 'cluster': 'ba25'}"
+node4.ba25.internal openshift_hostname=node4.ba25.internal  openshift_node_labels="{'env':'app', 'cluster': 'ba25'}"
+
+## These are CNS nodes
+# support1.ba25.internal openshift_hostname=support1.ba25.internal  openshift_node_labels="{'env':'glusterfs', 'cluster': 'ba25'}"
+
+[nfs]
+support1.ba25.internal openshift_hostname=support1.ba25.internal
+
+#[glusterfs]
+# support1.ba25.internal glusterfs_devices='[ "/dev/xvdd" ]'
