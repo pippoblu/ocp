@@ -16,9 +16,9 @@ openshift_enable_unsupported_configurations=True
 openshift_deployment_type=openshift-enterprise
 containerized=false
 openshift_master_cluster_method=native
-openshift_master_cluster_hostname=loadbalancer.ba25.internal
-openshift_master_cluster_public_hostname=loadbalancer.ba25.example.opentlc.com
-openshift_master_default_subdomain=apps.ba25.example.opentlc.com
+openshift_master_cluster_hostname=loadbalancer.2cbb.internal
+openshift_master_cluster_public_hostname=loadbalancer.2cbb.example.opentlc.com
+openshift_master_default_subdomain=apps.2cbb.example.opentlc.com
 openshift_hosted_router_selector='node-role.kubernetes.io/infra=true'
 openshift_hosted_registry_selector='node-role.kubernetes.io/infra=true'
 
@@ -145,41 +145,41 @@ nfs
 #glusterfs
 
 [lb]
-loadbalancer.ba25.internal
+loadbalancer.2cbb.internal
 
 [masters]
-master1.ba25.internal
-master2.ba25.internal
-master3.ba25.internal
+master1.2cbb.internal
+master2.2cbb.internal
+master3.2cbb.internal
 
 [etcd]
-master1.ba25.internal
-master2.ba25.internal
-master3.ba25.internal
+master1.2cbb.internal
+master2.2cbb.internal
+master3.2cbb.internal
 
 [nodes]
 ## These are the masters
-master1.ba25.internal openshift_hostname=master1.ba25.internal  openshift_node_labels="{'env': 'master', 'cluster': 'ba25'}"
-master2.ba25.internal openshift_hostname=master2.ba25.internal  openshift_node_labels="{'env': 'master', 'cluster': 'ba25'}"
-master3.ba25.internal openshift_hostname=master3.ba25.internal  openshift_node_labels="{'env': 'master', 'cluster': 'ba25'}"
+master1.2cbb.internal openshift_hostname=master1.2cbb.internal  openshift_node_labels="{'env': 'master', 'cluster': '2cbb'}"
+master2.2cbb.internal openshift_hostname=master2.2cbb.internal  openshift_node_labels="{'env': 'master', 'cluster': '2cbb'}"
+master3.2cbb.internal openshift_hostname=master3.2cbb.internal  openshift_node_labels="{'env': 'master', 'cluster': '2cbb'}"
 
 ## These are infranodes
-infranode1.ba25.internal openshift_hostname=infranode1.ba25.internal  openshift_node_labels="{'env': 'infra', 'cluster': 'ba25', 'node-role.kubernetes.io/infra': 'true', 'infra': 'true', 'region': 'infra'}"
-infranode2.ba25.internal openshift_hostname=infranode2.ba25.internal  openshift_node_labels="{'env': 'infra', 'cluster': 'ba25', 'node-role.kubernetes.io/infra': 'true', 'infra': 'true', 'region': 'infra'}"
+infranode1.2cbb.internal openshift_hostname=infranode1.2cbb.internal  openshift_node_labels="{'env': 'infra', 'cluster': '2cbb', 'node-role.kubernetes.io/infra': 'true', 'infra': 'true', 'region': 'infra'}"
+infranode2.2cbb.internal openshift_hostname=infranode2.2cbb.internal  openshift_node_labels="{'env': 'infra', 'cluster': '2cbb', 'node-role.kubernetes.io/infra': 'true', 'infra': 'true', 'region': 'infra'}"
 
 ## These are regular nodes
-node1.ba25.internal openshift_hostname=node1.ba25.internal  openshift_node_labels="{'env':'app', 'cluster': 'ba25'}"
-node2.ba25.internal openshift_hostname=node2.ba25.internal  openshift_node_labels="{'env':'app', 'cluster': 'ba25'}"
-node3.ba25.internal openshift_hostname=node3.ba25.internal  openshift_node_labels="{'env':'app', 'cluster': 'ba25'}"
-node4.ba25.internal openshift_hostname=node4.ba25.internal  openshift_node_labels="{'env':'app', 'cluster': 'ba25'}"
+node1.2cbb.internal openshift_hostname=node1.2cbb.internal  openshift_node_labels="{'env':'app', 'cluster': '2cbb'}"
+node2.2cbb.internal openshift_hostname=node2.2cbb.internal  openshift_node_labels="{'env':'app', 'cluster': '2cbb'}"
+node3.2cbb.internal openshift_hostname=node3.2cbb.internal  openshift_node_labels="{'env':'app', 'cluster': '2cbb'}"
+node4.2cbb.internal openshift_hostname=node4.2cbb.internal  openshift_node_labels="{'env':'app', 'cluster': '2cbb'}"
 
 ## These are CNS nodes
-support1.ba25.internal openshift_hostname=support1.ba25.internal  openshift_node_labels="{'env':'glusterfs', 'cluster': 'ba25'}"
+support1.2cbb.internal openshift_hostname=support1.2cbb.internal  openshift_node_labels="{'env':'glusterfs', 'cluster': '2cbb'}"
 
 #[nfs]
-#support1.ba25.internal openshift_hostname=support1.ba25.internal  openshift_node_labels="{'env':'EFK', 'cluster': 'ba25'}"
+#support1.2cbb.internal openshift_hostname=support1.2cbb.internal  openshift_node_labels="{'env':'EFK', 'cluster': '2cbb'}"
 
 #[glusterfs]
-#support1.ba25.internal glusterfs_devices='[ "/dev/xvdd" ]'
-#support2.ba25.internal glusterfs_devices='[ "/dev/xvdd" ]'
-#support3.ba25.internal glusterfs_devices='[ "/dev/xvdd" ]'
+#support1.2cbb.internal glusterfs_devices='[ "/dev/xvdd" ]'
+#support2.2cbb.internal glusterfs_devices='[ "/dev/xvdd" ]'
+#support3.2cbb.internal glusterfs_devices='[ "/dev/xvdd" ]'
